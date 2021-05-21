@@ -13,7 +13,7 @@ B25070_007,rent30_35pct,Gross rent is 30-35% of income,RentPop,Rent30
 B25070_008,rent35_40pct,Gross rent is 35-40% of income,RentPop,Rent30
 B25070_009,rent40_50pct,Gross rent is 40-50% of income,RentPop,Rent30
 B25070_010,rent50pct,Gross rent is >50% of income,RentPop,Rent30
-B19013_001,medhhi,Estimate!!Median household income in the past 12 months (in 2018 inflation-adjusted dollars),,medhhi
+B19013_001,medhhi,Estimate!!Median household income in the past 12 months (in 2018 inflation-adjusted dollars),99999,medhhi
 B25003_001,totTenure,Estimate!!Total,99999,totTenure
 B25003_002,ownOcc,Estimate!!Total!!Owner occupied,totTenure,ownOcc
 B25003_003,rentOcc,Estimate!!Total!!Renter occupied,totTenure,rentOcc
@@ -22,45 +22,3 @@ B17001_002,pov_pop,Population Below the Poverty Line,pov_total,pov_pop
 B25077_001,medvalue,Estimate!!Median value (dollars),99999,medvalue
 B25024_002,tot_sf,"Estimate!!Total!!1, detached",totTenure,tot_sf
 B25032_014,rntocc_sf,"Estimate!!Total!!Renter-occupied housing units!!1, detached",totTenure,rntocc_sf
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,

@@ -35,7 +35,7 @@ munis2 %>%
 Only ~30% of Invitation Homes' portfolio is within municipalities
 
 ### The counties
-~70% in unincorporated areas. But, the municipalities are not evenly distributed, so I analyze by each county to see how these 
+~70% in unincorporated areas. But, the municipalities are not evenly distributed, so I analyze by each county to see how the totals compare between incorporated and unincorporaed spaces. 
 
 
 ```{r pressure, echo=FALSE}
