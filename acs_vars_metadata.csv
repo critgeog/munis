@@ -1,0 +1,66 @@
+﻿variable,var_name,description,var_normalize,var_group
+B01003_001,TotPop,Total population estimate,99999,TotPop
+B03002_003,WhiteNH ,White non-hispanic population,TotPop,Rce_WhtNH 
+B03002_004,BlackNH ,Black non-hispanic pouplation,TotPop,Rce_BlkNH
+B03002_006,AsianNH ,Asian non-hispanic population,TotPop,Rce_AsnNH
+B03002_012,Hisp ,Hispanic/latinx population,TotPop,Rce_Hisp
+B03002_005,Am_IndNH,American Indian/non-hispanic population,TotPop,Rce_AI
+B03002_007,HPacIslNH,Hawaiian/Pacific Islander population,TotPop,Rce_HPI
+B03002_008,OthRacNH,Other race non-hispanic,TotPop,Rce_OthNH
+B25001_001,HousUnits,Total housing units,99999,HousUnits
+B25070_001,rentpop,Total population for rent/income ratio,99999,RentPop
+B25070_007,rent30_35pct,Gross rent is 30-35% of income,RentPop,Rent30
+B25070_008,rent35_40pct,Gross rent is 35-40% of income,RentPop,Rent30
+B25070_009,rent40_50pct,Gross rent is 40-50% of income,RentPop,Rent30
+B25070_010,rent50pct,Gross rent is >50% of income,RentPop,Rent30
+B19013_001,medhhi,Estimate!!Median household income in the past 12 months (in 2018 inflation-adjusted dollars),,medhhi
+B25003_001,totTenure,Estimate!!Total,99999,totTenure
+B25003_002,ownOcc,Estimate!!Total!!Owner occupied,totTenure,ownOcc
+B25003_003,rentOcc,Estimate!!Total!!Renter occupied,totTenure,rentOcc
+B17001_001,pov_total,Total Population to Calculate Poverty Rate,99999,pov_total
+B17001_002,pov_pop,Population Below the Poverty Line,pov_total,pov_pop
+B25077_001,medvalue,Estimate!!Median value (dollars),99999,medvalue
+B25024_002,tot_sf,"Estimate!!Total!!1, detached",totTenure,tot_sf
+B25032_014,rntocc_sf,"Estimate!!Total!!Renter-occupied housing units!!1, detached",totTenure,rntocc_sf
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,

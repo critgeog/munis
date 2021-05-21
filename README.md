@@ -1,2 +1,5 @@
 # munis
-# what's going on here?
+
+# analyze Invitation Homes, SFRs, and demographics in Atlanta metropolitan area municipalities.
+
+
