@@ -179,6 +179,10 @@ munis2 %>%
   arrange(desc(ihsfrs)) %>%
   print(n = 30)
 
+munis2 %>%
+  filter(ihsfrs > 50) %>%
+  group_by(county)
+  summarise(total = sum(ihsfrs))
 # testing
 munis2 %>%
   summarise(total = sum(ihsfrs))
@@ -189,7 +193,7 @@ munis2 %>%
 
 # map it
 tm_shape(munis2) +
-  tm_polygons("ihsfrs", palette = 'viridis', style = 'jenks', lwd = 0.1) +
+  tm_polygons("ihsfrs", palette = 'viridis', breaks = c(0,50,100,185,416), lwd = 0.1) +
   tm_shape(counties_sf) +
   tm_borders()
 
@@ -269,7 +273,7 @@ ih_counties<- ih_counties %>%
 
 # compare distribution across counties
 tm_shape(ih_counties) +
-  tm_polygons(c("unincorp_ih_sfrs","incorp_ih_sfrs","ihprops"), style = 'jenks')
+  tm_polygons(c("unincorp_ihsfrs","incorp_ihsfrs","county_ihsfrs"), style = 'jenks')
 
 # create shorter county name in preparation of figures
 ih_counties <- ih_counties %>%
@@ -288,7 +292,7 @@ ih_counties <- ih_counties %>%
 metadata <- read_csv("acs_vars_metadata.csv")
 
 # variable codes of interest
-acs_vars < -metadata$variable
+acs_vars <- metadata$variable
 acs_vars
 
 # using tidycensus, pull in census tract data from 2014-18 ACS
@@ -356,6 +360,11 @@ muni_tenure
 ## figures
 ####-----------------------------------------------------------------------
 
+# before we make figures, if we wanted to export any of the tbls or sfs, that is possible. 
+# write_sf(muni_tenure, "muni_tenure.geojson") # save muni_tenure sf as geojson in working directory
+# write_sf(counties_sf, "metro_atl_counties_ih.geojson") # save counties_sf as geojson named 'metro_atl_counties_ih' in working directory
+# write_csv(counties_sf, "metro_atl_counties_ih.csv") # save same file as csv. 
+
 tm_shape(muni_tenure) +
   tm_polygons("pct_ihsfr", palette = 'viridis', style = 'jenks', lwd = 0.1) +
   tm_shape(counties_sf) +
@@ -379,7 +388,7 @@ ggplot(data = muni_tenure, mapping = aes(x = ihsfrs, y = pct_ihsfr)) +
 
 
 muni_tenure %>%
-  select(OBJECTID, Name, ihsfrs, pct_ihsfr, pct_ih) %>%
+  select(OBJECTID, Name, ihsfrs, pct_ihsfr, pct_ih, rntocc_sf_est) %>%
   arrange(desc(pct_ihsfr)) %>%
   print(n=15)
 
@@ -447,6 +456,48 @@ ggplot(ih_counties_long, aes(x = reorder(short_name,count), y = count, fill = va
         legend.key = element_rect(size = 1)) +
   coord_flip()
 
+
+# this for a map.
+# create an sf of incorporated geolocations
+incorp_dots_sf <- muni_intersection %>%
+  filter(!(Parcel.ID == "09F020200131418" & Name == 'South Fulton' | Parcel.ID == "09F280001111122" & Name == 'South Fulton'))
+# create a munis2 tbl
+munis2_tbl <- munis2 %>%
+  as_tibble %>%
+  select(-(geometry))
+# join this munis info th incoprorate dots
+incorp_dots_info <- left_join(incorp_dots_sf, munis2_tbl, by = "Name")
+
+# leg_col <- c(tmaptools::get_brewer_pal("YlOrRd", 4, plot = FALSE)
+
+# map it
+tm_shape(counties_sf) +
+  tm_borders(lwd = .5, col='#BEBEBE') +
+  # tm_shape(munis2) +
+  # tm_borders(lty = 5, lwd = .5, col='#BEBEBE') +
+  tm_shape(incorp_dots_info) +
+  tm_dots("ihsfrs", palette = 'YlOrRd', breaks = c(0,26,50,100,185,417), border.lwd =0, legend.show = FALSE) +
+  tm_add_legend(type = c("symbol"),size = .2,border.lwd = 0,
+                col = c(tmaptools::get_brewer_pal("YlOrRd", 6, plot = FALSE)),
+                labels = c("0 to 25", "26 to 50", "51 to 100", "101 to 185", "185 to 416"),
+                title = "Only INVH SFRs\nwithin in Incorporated Areas")+
+  tm_legend(position = c(0.76, 0.02),
+            bg.color = "black",
+            frame = TRUE,
+            legend.text.size = .7,
+            legend.title.size = .9) +
+  tm_layout(frame = FALSE,
+            outer.margins=c(0,0,0,0),
+            inner.margins=c(0,0,0,0), asp=0,
+            bg.color = 'Black',
+            legend.text.col = '#ffffff',
+            legend.title.col = '#ffffff')
+  
+  
+
+
+
+??lty
 # county level comparison
 tmap_mode('view')
 tm_shape(ih_counties) +
