@@ -1,5 +1,5 @@
 ---
-title: "Housing Tenure in Atlanta metro jurisdictions"
+title: "The Emerging Jurisdictional Geography of Single-Family Rental Institional Investors in metropolitan Atlanta"
 author: "Taylor Hafley"
 date: "5/22/2021"
 output: 
@@ -89,12 +89,12 @@ atl_munis <- ga_cities_api %>%
 ## these data were retrieved from public facing tax parcel data
 ## cleaned, geocoded using google api, and joined together in a separate project
 ## I would prefer to keep this data private as this is unpublished research
-## If you need it, I will make it available on github so that the script will run
+## If you need it, I will make the available on github so that the script will run
 ## 11,633 addresses
 ####-----------------------------------------------------------------------
 
 # read in geocoded address level data for INVH properties
-ih_dots <- read_sf("../../invh/metro/data/ih_points_ct.geojson") # data I would prefer not to share. 
+ih_dots <- read_sf("../../invh/metro/data/ih_points_ct.geojson")
 
 ih_dots <- ih_dots %>%
   st_transform(26916) #EPSG 26916 is projected: NAD83 / UTM zone 16N # EPSG:26916 Projected coordinate system for North America
@@ -119,35 +119,79 @@ tm_shape(atl_munis) +
 rm(ga_cities_api)
 ```
 
-## Executive Summary
-
-## Introduction
-### !uestions
-1. what county has the most non-incorporated SFRs? answered, Gwinnett holds big change is Fulton 
-2. at the municipality, what is IH's share of the SF stock and SFR stock?
 
 
-### How do we respond to reviewers who might say there are low percentages?
-1. this is a single entity, which gives them considerable ownership of the housing stock
-available in this municipality. Two other publicly-listed SFRs operating in metropolitan Atlanta, own, in tandem, about the number of houses equivalent to Invitation Homes.
+## Abstract
+This research report is written as a resource for local officials and organizations in metropolitan Atlanta focused on issues related to community and economic development, housing, and land use. This report identifies the municipalities in the Atlanta metropolitan area where Invitation Homes owns a large number of properties, evaluates the extent to which that geography is in line with the residential housing stock, and key demographics. Invitation Homes owns roughly 12,000 single-family rental units across a 19-county area of metropolitan Atlanta. Recently, local officials in some communities in Atlanta have raised concerns about new suburban construction projects converting approved owner-occupied housing development to rentals. Leveraging public facing public property records and Security and Exchange Corporate Filings, this report analyzes the geography of Invitation Homes’ properties across 119 municipalities within a 19-county area of metropolitan Atlanta. I use areal interpolation to convert housing and demographic Census data to municipal boundaries and then compare these data to Invitation Homes ownership. I find that Invitation Homes owns rental units in 83 of the 119 municipalities. In total 3,382, or only 29% of the firm’s portfolio are within municipalities. Even so, the ownership is concentrated within a subset of these cities. There are 38 municipalities where Invitation Homes owns more than 50 single-family rentals, which accounts for 87% of all single-family rentals in incorporated areas. These municipalities are concentrated in Cherokee, Cobb, Fulton, and Gwinnett counties. In Canton and South Fulton, Invitation Homes owns 8.8 and 7.5% of the single-family rentals within the city limits. For these municipalities, in particular, local officials must consider how institutional presence affects issues such as zoning, housing prices and affordability, and economic growth. Ultimately, more than 70% of Invitation Homes’ properties are in unincorporated areas where county governments may be less equipped to regulate these new corporate actors. These places also may have tax structure and economic development policies in place built on the notion that the majority of the population is owner-occupants. More research is needed on if other institutionally owned single-family rentals have a similar jurisdictional geography to Invitation Homes and how these institutional actors affect local housing markets in metropolitan Atlanta.
 
-### Why are these important questions?
-1. these findings are relevent to public and elected officials of these jurisdictions as they
-discuss issues related to zoning, housing affordability, housing supply, and homeownership
+\newpage
+## Introduction, Research Questions, and Scope of Work [2 pages]
+The focus of this research report is on the municipal geography of the largest owner of single-family rental homes in metropolitan Atlanta. There has been a significant increase in single-family rentals over the past twelve years following the United States foreclosure crisis; there were 2.8 million more single-family rentals in 2015 than in 2009 (Immergluck, 2018). Atlanta has had the fourth highest increases in single-family rentals since the Great Recession (Immergluck, 2018). Atlanta has more institutionally owned single-family rentals than any metropolitan area (Charles, 2020). Some local municipalities in Atlanta and throughout the country have recently voiced concern about the proliferation of institutionally owned single-family rentals as they buy existing subdivisions and construct new build-to-rent suburban developments (Stafford, 2021; Inions, 2021).
+
+Even so, there has been very little research up to this point about the jurisdictional geography of these entities. That is the focus of this research report. Specifically, I focus on three questions:
+
+1. What share of Invitation Homes’ Atlanta portfolio are within incorporated municipalities in the Atlanta metropolitan region?
+2. In what municipalities does Invitation Homes own a large number of single-family rentals? Within these municipalities, to what extent does Invitation Homes’ activity align with that municipality's single-family housing stock?
+3. Outside of municipalities, what counties does Invitation Homes own a large number of single-family rentals?
+
+I suggest these are important questions for three reasons. One, in a recent analysis of the increasing number of single-family rentals in the immediate years following the foreclosure crisis, Atlanta housing scholar Immergluck (2018) notes, “more work is also needed to measure the extent to which large, institutional investors constitute a significant share of SFR at the neighborhood level or even at the level of individual suburbs. If this occurs, a number of concerns may arise, including those about whether individual firms own a significant portion of any one jurisdiction’s residential property.” (14). In this report, I analyze the ownership of Atlanta’s largest institutional investor across municipalities. Relatedly, in a recent analysis of four major corporate landlords in metropolitan Atlanta, Charles (2020) writes, "these firms have accumulated near oligopolistic concentrations of the housing market,” reporting that these firms own more than 52% of the single-family houses in some square mile areas.
+
+Second, Invitation Homes ownership of suburban houses represents a significant shift in the assumed housing tenure of single-family homes. Homeownership has been the dominant mode of housing tenure in suburban single-family homes, if “a house price recovery without homeowners” (Lambie-Hanson et al. 2019). 
+
+And third, these questions address a third need identified in a 2016 Working Paper from the San Francisco Federal Reserve. According to this report, “with powerful institutional investors” targeting “very specific places, community development specialists need to know more about how they operate” (9). This report pushes towards that goal by specifically identifying the local communities targeted by the largest institutional investor. Residents and local officials are likely already aware of these changes within their neighborhoods and municipalities, but their information may be limited in two respects. One, as Fields et al. (2016) notes, identifying ownership and searching property records is difficult because corporations and institutional investment firms own properties through a range of financial instruments (Fields et al. 2016). Second, local officials may not yet know what other municipalities are experiencing similar trends. In that case, this report may help local officials establish connections to share information and strategies among communities within the metropolitan area. 
+And finally, this trend of institutional investment accelerated following amid the 2020 financial instability. 
+
+### Scope of Work
+In this report, I analyze the jurisdictional geography of the largest landlord in the metropolitan Atlanta area. Specifically, I analyze Invitation Homes' in the 19 Atlanta metropolitan counties where the publicly-listed single-family rental Real Estate Investment Trust owns single-family homes. First, I will provide a short literature review. Then, I describe my methods and data collection. Next, I map the municipal geography of Invitation Homes, show the presence in relation to the municipal housing stock, and analyze the demographics of the municipalities where Invitation Homes is most concentrated, and compare incorporated and incorporated spaces across the Atlanta counties. The report concludes with a brief summary of the findings and discussion of more research.
+
+\newpage
+## Background [2 pages] 
+The single-family rental (SFR) constitutes a growing share of the US housing market over the past 12 years. While historically the single-family rental has been a small-scale practice, the high number of foreclosed homes, tight mortgage markets, and managerial costs driven down by technological factors (Mills, 2019) gave way to a new type of single-family rental landlord as private equity firms acquired houses from the federal government via bulk purchases (Akers and Seymour, 2018). Nationwide, institutional investors own more than 300,000 single-family rental units (Bordia, 2019). Institutional investors have the potential to provide affordable housing in desirable neighborhoods. They also may lower homeownership rates and drive up rent prices. They may constrain housing price growth. And they also may create new housing insecurity. At minimum, the transition of a large share of suburban single-family homes from owner-occupant to rentals owned by powerful institutional investors is a significant shift in how municipalities design housing policy. In this short Literature Review, I focus on some of the recent empirical research, the growth of single-family rentals in metropolitan Atlanta, and a recent trend of community pushback against single-family rental communities. As some communities incorporate in efforts to raise housing prices or homeownership, it is important to consider the extent to which these institutional investors own a share of the area's housing stock.
+Since municipalities derive a large share of their 
+
+### “A house price recovery without homeowners”
+According to a Working Paper from the Federal Reserve Bank of Philadelphia, “between 2007 and 2014, institutional investors have helped local house price recovery but depressed local homeownership rates" in a national study using zip-code level data of single-family residential sales (Lambie Hanson et al. 2019, 18). The authors find that the increase in institutional buyers in the “single-family residential market contributed to 9 percent of the increase in real house price growth and 28 percent of the changes in homeownership” (3). Similarly, in a national study using neighborhood data from 2012-14, Mills et al. (2019) found institutional investors support housing price growth.
+Taking a longer view of the housing market recovery from 2012-2019, Charles (2021) found that for every one percent increase in institutionally owned SFRs in a half mile radius catchment area, there was 1% less growth in housing price in the Atlanta suburbs. 
+The Philadelphia Federal Reserve report found that institutional investors buying and selling properties led to higher rental prices in local markets, but had no effect on eviction rates (Lambie-Hanson et al. 2019). Conversely, the Atlanta Federal Reserve found large landlords were more likely to file an eviction than small landlords in 2015 in Fulton County, GA.
+
+### An Overview of Invitation Homes in Atlanta
+Invitation Homes is Atlanta's and the nation’s largest single-family landlord. The publicly-listed single-family Real Estate Investment Trust (REIT) owns 80,000 single-family rentals in sixteen markets across the United States. There are 250,170 single-family rentals in the Atlanta metropolitan area. In total, Invitation Homes owns more than 12,000 properties which is about 5% of all single-family rentals in Atlanta. The single company owns 13% of the new single-family rentals since 2010. The company was incorporated in 2012. Invitation Homes has a 95% occupancy rate and the metropolitan area accounts for 13% of its quarterly revenue (Invitation Homes 10-Q, 2020).
+
+### Why Atlanta
+ The Atlanta metropolitan area has experienced the fourth highest increases in single-family rentals since the Great Recession (Immergluck, 2018). Public-single-family REITs own more single-family rentals in metropolitan Atlanta than any other metropolitan area. Several factors contributed to Atlanta’s large increase in single-family rentals. Atlanta experienced rapid housing price growth during the housing bubble followed by a significant drop in home values, and then declining homeownership in Atlanta (Lambie-Hanson et al. 2019). Atlanta had a large number of residential mortgage foreclosures in older neighborhoods, as well as a large number of brand new construction foreclosures concentrated in the suburbs (Raymond et al. 2018).
 
 
-## Scope of Work
-This document does four things
-1. Map the municipal geography of Invitation Homes
-2. Show how municipalities compare to non-incorporated spaces
-3. Show the presence in relation to the municipal housing stock
-4. Analyze the demographics of the municipalities where Invitation Homes is most concentrated
+What is important, however, is that municipalities and jurisdictions are aware of these large actors in their housing system and can make decisions with that information. There are a range of investors who have entered this space and likely treat tenants and the homes differently. Nevertheless, it is clear this represents a marked shift in the assumed mode of housing tenure in single-family homes. Thus, local jurisdictions must recognize this shift and proceed with housing and ownership policies with this recognition in mind. 
 
-### TOC
-### Introduction
-### Methods and Data Collection
-### Findings
-### Discussion
+
+\newpage
+## Methods and Data Collection [ 1 page ]
+### Data Collection
+My data collection procedures are as follows. I used Exhibit 21.1 in Securities and Exchange Commission Form 10-K, the ‘Annual report pursuant to section 13 or 15(d) of the Securities and Exchange Act of 1934’ filed by Invitation Homes (Invitation Homes, 2019) to identify the firm’s subsidiary names. Next, using publicly available property tax record databases, I searched for parcels owned by these companies in counties across the Atlanta metropolitan area. Using this approach, I created a database with 11,633 single-family rental homes, which is 95.48% of all Invitation Homes owned properties as of September 30, 2019. I geocoded these addresses in RStudio using the Google API.
+Demographic data for this project comes from the 2014-2018 American Community Survey, a sample survey available from the US Census Bureau. I obtained these data via the tidycensus package available on ‘The Comprehensive R Archive Network’ (CRAN) iin RStudio, a free and open source software used for data science and research.
+I read in block group level data from the American Community Survey using tidycensus. Block group data are the I include the following variables: 
+I use block group data because it is the smallest unit at which we can conduct interpolation.
+
+### Methods
+The key method I use in this approach is areal interpolation. The United States Census Bureau provides population and housing data available in spatial boundaries that approximate neighborhoods, such as block groups or census tracts. In most cases, these neighborhood boundaries generated by the Census Bureau do not align with local municipalities boundaries. One common approach to address this issue is called areal interpolation. Areal interpolation involves aggregating data from one set of polygons  (i.e. neighborhoods) to another set of polygons that do not share common borders (i.e. municipal boundaries).
+To conduct this analysis, I use the ‘areal’ package available on CRAN. This package automates the areal interpolation. This approach assumes the population is distributed equally within the neighborhood boundary. As a result, if 55% of the neighborhood boundary is within the jurisdictional boundary, then 55% of the population is considered to be within the jurisdictional boundary. The major limitation is that this does not account for surface area’s such as water, public parks, or high density commercial areas that with little or no population within that polygon. Nevertheless, this is the most common approach in social science research to address the issue when two sets of polygons do not share boundaries. 
+I then use this method to calculate municipal totals for population variables poverty, race, and single-family housing. From these variables, I calculate Invitation Homes’ share of single-family rental ownership and single-family housing ownership within each municipal boundary. 
+
+\newpage
+## Findings - [4 pages]
+
+What share of Invitation Homes’ Atlanta portfolio are within incorporated municipalities in the Atlanta metropolitan region?
+In what municipalities does Invitation Homes own a large number of single-family rentals? Within these municipalities, to what extent does Invitation Homes’ activity align with or depart from that municipality's single-family housing stock?
+In what municipalities does Invitation Homes own the most single-family rentals?
+At the municipality, what is IH's share of the SF stock and SFR stock?
+Outside of municipalities, what counties does Invitation Homes own a large number of single-family rentals? 
+
+Based on the report here, the five municipalities that should be most conscience of Invitation Homes' presence is South Fulton, Canton, Kennesaw, Sugar Hill, and Fairborn. 
+
+I find that Invitation Homes own rental units in 83 of the 119 municipalities within this 19 county area. In total 3,382, or 29% of the firm’s portfolio are within municipalities. The median number of properties Invitation Homes owns in a municipality is 5. The average number of properties of Invitation Homes is 28, demonstrating a skewed dataset where the municipal ownership is concentrated in a few municipalities. Invitation Homes owns more than 50 single-family rentals in 40x municipalities within the Atlanta metropolitan area. Next I control for the number of single-family rentals in the municipality to assess the extent to which Invitation Homes’ geography merely reflects broader trends in the single-family housing stock. I find that Invitation Homes owns more than 4% of all single-family rental homes in 12 municipalities, the maximum of which is 8.8% and 11.3%. 
+
+These findings are relevent to public and elected officials of these jurisdictions as they discuss issues related to zoning, housing affordability, housing supply, and homeownership. Furthermore, if one or two firms own a sizeable portion of a municipalities housing stock, the leaders and public officials in these areas should monitor their activity. With such a sizeable share of housing being owned by one institution, these firms represent a major corpate partner at best, or a powerful agent in shaping the housing market in that jurisdiction.
+
 
 ```{r cars}
 
@@ -242,14 +286,15 @@ rm(munis_n, atl_munis)
 
 ```
 
-### An Invitaion Homes Primer
-## Data Collection
+
 ## Municipalities
 Only ~30% of Invitation Homes' portfolio is within municipalities
 
 ### The counties
 ~70% in unincorporated areas. But, the municipalities are not evenly distributed, so I analyze by each county to see how the totals compare between incorporated and unincorporaed spaces. 
 
+
+### Counties
 
 ```{r pressure, echo=FALSE}
 ####-----------------------------------------------------------------------
